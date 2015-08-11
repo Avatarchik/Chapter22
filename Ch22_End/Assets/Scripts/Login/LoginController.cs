@@ -202,7 +202,6 @@ public class LoginController : MonoBehaviour {
 		while(!finished[3]){
 			yield return new WaitForSeconds(0.1f);
 		}
-		StartCoroutine(LoadDataFromGameServer());
 		LoadNextScene();
 	}
 
