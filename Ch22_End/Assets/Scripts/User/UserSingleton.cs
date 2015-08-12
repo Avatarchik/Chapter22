@@ -6,7 +6,6 @@ using Boomlagoon.JSON;
 /*
 UserSingleton 클래스는 현재 유저의 개인 정보 및 능력치 정보를 메모리 상에 들고 있는 싱글톤 클래스입니다.
 서버로부터 /User/{유저아이디} API로 정보를 가져와서 여기에 저장합니다.
-
 */
 public class UserSingleton : MonoBehaviour {
 
@@ -17,7 +16,6 @@ public class UserSingleton : MonoBehaviour {
 		}
 		set {
 			PlayerPrefs.SetInt("UserID",value);
-			PlayerPrefs.Save();
 		}
 	}
 	
@@ -28,7 +26,6 @@ public class UserSingleton : MonoBehaviour {
 		}
 		set {
 			PlayerPrefs.SetString("AccessToken",value);
-			PlayerPrefs.Save();
 		}
 	}
 	
@@ -39,7 +36,6 @@ public class UserSingleton : MonoBehaviour {
 		}
 		set {
 			PlayerPrefs.SetString("FacebookID",value);
-			PlayerPrefs.Save();
 		}
 	}
 	
@@ -50,7 +46,6 @@ public class UserSingleton : MonoBehaviour {
 		}
 		set {
 			PlayerPrefs.SetString("FacebookAccessToken",value);
-			PlayerPrefs.Save();
 		}
 	}
 	
@@ -61,7 +56,6 @@ public class UserSingleton : MonoBehaviour {
 		}
 		set {
 			PlayerPrefs.SetString("Name",value);
-			PlayerPrefs.Save();
 		}
 	}
 	
@@ -72,7 +66,6 @@ public class UserSingleton : MonoBehaviour {
 		}
 		set {
 			PlayerPrefs.SetString("FacebookPhotoURL",value);
-			PlayerPrefs.Save();
 		}
 	}
 	
@@ -124,9 +117,7 @@ public class UserSingleton : MonoBehaviour {
 			UserSingleton.Instance.ExpForNextLevel = (int)data["ExpForNextLevel"].Number;
 			UserSingleton.Instance.ExpAfterLastLevel = (int)data["ExpAfterLastLevel"].Number;
 			
-			callback();
+			callback();		
 		});
 	}
-
 }
-
