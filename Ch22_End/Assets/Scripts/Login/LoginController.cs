@@ -53,7 +53,7 @@ public class LoginController : MonoBehaviour {
 	{
 // 페이스북 SDK를 초기화합니다. (페이스북 API 서버 접속)
 		FB.Init(delegate {
-
+// FB.ActivateApp() 함수로 페이스북 SDK를 통해 유저가 얼마나 접속하는 지 로깅합니다. 페이스북 관리자 페이지에서 유저의 접속 빈도를 확인할 수 있습니다.
 			FB.ActivateApp();
 // 페이스북 SDK로 로그인을 수행합니다.
 // 유니티 에디터에서는 Access Token을 받아오는 팝업이 뜨지만

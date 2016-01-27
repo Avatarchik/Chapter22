@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Text;
 using Boomlagoon.JSON;
+using System;
 
 public class UpgradeController : MonoBehaviour {
 
@@ -50,6 +51,21 @@ public class UpgradeController : MonoBehaviour {
 
 	}
 
+	public void ConfirmUpgrade(string UpgradeType)
+	{
+
+		DialogDataConfirm confirm = new DialogDataConfirm ("","",delegate(bool yn) {
+			
+			if(yn == true){
+				Upgrade(UpgradeType);
+			}
+			
+		});
+
+		DialogManager.Instance.Push (confirm);
+
+	}
+
 	public void Upgrade(string UpgradeType)
 	{
 		JSONObject obj = new JSONObject();
@@ -65,7 +81,8 @@ public class UpgradeController : MonoBehaviour {
 					NotificationCenter.Instance.Notify(NotificationCenter.Subject.PlayerData);
 				});
 				// Alert Dialog
-				DialogDataAlert alert = new DialogDataAlert("Upgrade Success","Success!!",delegate() {
+				DialogDataAlert alert = new DialogDataAlert(Language.Instance.GetLanguage("Upgrade Success Title"),
+				                                            Language.Instance.GetLanguage("Upgrade Success"),delegate() {
 					
 				} );
 				DialogManager.Instance.Push(alert);
@@ -74,7 +91,8 @@ public class UpgradeController : MonoBehaviour {
 			}else if (ResultCode == 4) // Max Level
 			{
 				// Alert Dialog
-				DialogDataAlert alert = new DialogDataAlert("Upgrade Failed",  "Max Level", delegate() {
+				DialogDataAlert alert = new DialogDataAlert(Language.Instance.GetLanguage("Upgrade Failed Title"),
+				                                            Language.Instance.GetLanguage("Max Level"), delegate() {
 					
 				});
 				DialogManager.Instance.Push(alert);
@@ -82,7 +100,8 @@ public class UpgradeController : MonoBehaviour {
 			}else if(ResultCode == 5) // Not enough diamond
 			{
 				// Alert Dialog
-				DialogDataAlert alert = new DialogDataAlert("Upgrade Failed", "Not Enouhg Diamond", delegate() {
+				DialogDataAlert alert = new DialogDataAlert(Language.Instance.GetLanguage("Upgrade Failed Title"),
+				                                            Language.Instance.GetLanguage("Not Enouhg Diamond"), delegate() {
 					
 				});
 				DialogManager.Instance.Push(alert);
@@ -93,20 +112,89 @@ public class UpgradeController : MonoBehaviour {
 
 	public void UpgradeHealth()
 	{
-		Upgrade ("Health");
+		Debug.Log ("UpgradeHealth");
+		
+		String title = Language.Instance.GetLanguage ("Health Upgrade Confirm");
+		String message = String.Format(Language.Instance.GetLanguage("Diamonds are required"),UserSingleton.Instance.HealthLevel * 2);
+
+		DialogDataConfirm confirm = new DialogDataConfirm(
+			title,
+			message,
+			delegate(bool yn){
+
+			if(yn){
+				
+				Upgrade ("Health");
+
+			}
+
+		});
+		DialogManager.Instance.Push (confirm);
+
 	}
 	public void UpgradeDefense()
 	{
+		Debug.Log ("UpgradeDefense");
 		
-		Upgrade ("Defense");
+		String title = Language.Instance.GetLanguage ("Defense Upgrade Confirm");
+		String message = String.Format(Language.Instance.GetLanguage("Diamonds are required"),UserSingleton.Instance.DefenseLevel * 2);
+
+		DialogDataConfirm confirm = new DialogDataConfirm(
+			title,
+			message,
+			delegate(bool yn){
+			
+			if(yn){
+				
+				Upgrade ("Defense");
+				
+			}
+			
+		});
+		
+		DialogManager.Instance.Push (confirm);
 	}
 	public void UpgradeDamage()
 	{
-		Upgrade ("Damage");
+		Debug.Log ("UpgradeDamage");
+		
+		String title = Language.Instance.GetLanguage ("Damage Upgrade Confirm");
+		String message = String.Format(Language.Instance.GetLanguage("Diamonds are required"),UserSingleton.Instance.DamageLevel * 2);
+
+		DialogDataConfirm confirm = new DialogDataConfirm(
+			title,
+			message,
+			delegate(bool yn){
+			
+			if(yn){
+				
+				Upgrade ("Damage");
+				
+			}
+			
+		});
+		DialogManager.Instance.Push (confirm);
+
 	}
 	public void UpgradeSpeed()
 	{
-		
-		Upgrade ("Speed");
+		Debug.Log ("UpgradeSpeed");
+
+		String title = Language.Instance.GetLanguage ("Speed Upgrade Confirm");
+		String message = String.Format (Language.Instance.GetLanguage ("Diamonds are required"), UserSingleton.Instance.SpeedLevel * 2);
+
+		DialogDataConfirm confirm = new DialogDataConfirm(
+			title,
+			message,
+			delegate(bool yn){
+				
+			if(yn){
+				
+				Upgrade ("Speed");
+				
+			}
+			
+		});
+		DialogManager.Instance.Push (confirm);
 	}
 }
