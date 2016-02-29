@@ -34,6 +34,7 @@ public class SkillAttack1Pool : ObjectPool {
 		poolSize = 20;
 // 오브젝트 풀의 게임 오브젝트 이름을 설정합니다.
 		gameObject.name =  "SkillAttack1Pool";
+		gameObject.layer = 2;
 // 오브젝트를 미리 생성해둡니다.
 		PreloadPool();
 	}
