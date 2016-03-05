@@ -96,7 +96,7 @@ public class UserSingleton : MonoBehaviour {
 	//콜백변수로, 로드가 완료되면 다시 호출한 스크립트로 로드가 완료되었다고 호출할 수 있습니다.
 	public void Refresh(Action callback)
 	{
-		HTTPClient.Instance.GET(Singleton.Instance.HOST + "/User/"+UserSingleton.Instance.UserID,
+		HTTPClient.Instance.GET(Singleton.Instance.HOST + "/User/Info?UserID="+UserSingleton.Instance.UserID,
 		                        delegate(WWW www)
 		                        {
 			Debug.Log(www.text);
@@ -120,4 +120,5 @@ public class UserSingleton : MonoBehaviour {
 			callback();		
 		});
 	}
+
 }

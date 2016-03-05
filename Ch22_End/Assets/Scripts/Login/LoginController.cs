@@ -142,7 +142,7 @@ public class LoginController : MonoBehaviour {
 		});
 
 // 페이스북 프로필 사진 가져오기 
-		FB.API("/friends", HttpMethod.GET, delegate(FBResult friendResult){
+		FB.API("/me/friends", HttpMethod.GET, delegate(FBResult friendResult){
 			Debug.Log(friendResult.Text);
 
 			finished[2] = true;
@@ -167,7 +167,7 @@ public class LoginController : MonoBehaviour {
 
 		Debug.Log("Send To Server: " + body.ToString());
 // 서버에 로그인 데이터를 전달합니다.
-		HTTPClient.Instance.POST(Singleton.Instance.HOST + "/Login",
+		HTTPClient.Instance.POST(Singleton.Instance.HOST + "/Login/Facebook",
 		                         body.ToString(),
 		                         delegate(WWW www) 
 		{
